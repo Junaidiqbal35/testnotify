@@ -42,7 +42,7 @@
     <meta charset="utf-8">
     <title>
         {% block title %}
-            Simple Chat Application
+            Notification Application
         {% endblock %}
     </title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -52,17 +52,17 @@
   </head>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="{% url 'home' %}">Welcome to the Simple Chat Application</a>
+      <a class="navbar-brand" href="{% url 'home' %}">Welcome to Badass</a>
       <div class="dropdown">
       <a href="#" class="notification dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true">
         <i class="fa fa-bell" style="font-size:24px"></i>
-        <span class="badge">{% live_notify_badge %}</span>
+        <span class="badge">  {{ count }} </span>
       </a>
 		  <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-	      	{% for notification in  user.notifications.unread %}
+	      	{% for notification in  notification %}
 	      		<div>
 {#	      		    notification <b>{{ notification.actor }}</b>#}
-				<button class="dropdown-item" type="button">{{ notification.verb }}</button>
+				<button class="dropdown-item" type="button">{{ notification }}</button>
 				</div>
 				<div class="dropdown-divider"></div>
 			{% endfor %}
@@ -76,6 +76,7 @@
       {% endif %}
     </div>
   </nav>
+
 
   <body>
 
