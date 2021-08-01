@@ -21,11 +21,13 @@ class Badassness(models.Model):
 
 def my_notifier(sender, instance, created, **kwargs):
     if created:
-        notify.send(instance.user,
-                    verb=f"New Badass ({instance.user}) created!",
-                    recipient=instance.user,
-                    target = instance
-                    )
+        users = User.objects.exclude(id=instance.user.id)
+        for user in users:
+            notify.send(instance.user,
+                        verb=f"New Badass ({instance.user}) created!",
+                        recipient=user,
+                        target=instance
+                        )
 
 
 post_save.connect(my_notifier, sender=Badassness)
